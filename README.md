@@ -1,6 +1,5 @@
 ## Cobold assignment
 This assignment is for Cobold. 
-Kindly review it on mobile view.
 
 ## Port
 
@@ -12,11 +11,11 @@ Port `3000` should be available on the machine.
 
 2. Clone this repo using git clone using following command :
 
-git clone https://github.com/MonikaNegi2708/CoboldAssessment/my-app
+git clone https://github.com/MonikaNegi2708/CoboldAssessment
 
 3. Switch to respective directory using following command :
 
-cd ./CoboldAssessment
+cd CoboldAssessment/my-app
 
 4. Run following command to install dependencies :
 
