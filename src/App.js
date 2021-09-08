@@ -6,8 +6,9 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <div>
-          <h1>LIVE WEBSITE TRACKING</h1>
+        <div className="app-header">
+          <h6 className="header">LIVE WEBSITE TRACKING</h6>
+          <p>Currently tracking {localStorage.getItem("urlList") ? JSON.parse(localStorage.getItem("urlList")).length : '0'} websites</p>
         </div>
         <Dashboard />
       </BrowserRouter>

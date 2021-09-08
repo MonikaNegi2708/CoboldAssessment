@@ -9,8 +9,9 @@ class Dashboard extends React.Component {
 		urlList: [],
 	}
 
-	componentDidMount() {
+	componentWillMount() {
 		this.getUrlResponse();
+		setInterval(this.getUrlResponse, 300000);
 	}
 
 	getUrlResponse = () => {
@@ -42,14 +43,17 @@ class Dashboard extends React.Component {
 	}
 
 	render() {
-		return <div>
-			<input placeholder="Input with URL validation" onChange={this.onChangeHandler} value={this.state.url} />
-			<button type="button" onClick={this.addWebsiteHandler} disabled={this.state.url.trim() == ""}>Add Website</button>
-			{this.state.urlList && this.state.urlList.length > 0 ?
-				<UrlList urlList={this.state.urlList} />
-				: <h1>No results found !</h1>
-			}
-		</div>
+		return <div className="app-body">
+			<div className="content-header">
+				<input placeholder="Input with URL validation" onChange={this.onChangeHandler} value={this.state.url} />
+				<button type="button" className="button-add-website" onClick={this.addWebsiteHandler} disabled={this.state.url.trim() == ""}>ADD WEBSITE</button>
+			</div>
+			{this.state.urlList.length ?
+				this.state.urlList.length === JSON.parse(localStorage.getItem("urlList")).length ?
+					<UrlList urlList={this.state.urlList} />
+					: <div>Loading...</div>
+				: null
+			}		</div>
 	}
 }
 
