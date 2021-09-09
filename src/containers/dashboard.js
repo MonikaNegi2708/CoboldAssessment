@@ -9,7 +9,7 @@ class Dashboard extends React.Component {
 		urlList: [],
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		this.getUrlResponse();
 		setInterval(this.getUrlResponse, 300000);
 	}
@@ -32,20 +32,26 @@ class Dashboard extends React.Component {
 	}
 
 	onChangeHandler = (e) => {
-		this.setState({ url: e.target.value })
+		this.setState({ url: e.target.value, errorMessage: false })
 	}
 
 	addWebsiteHandler = () => {
 		let tempUrlList = localStorage.getItem("urlList") ? JSON.parse(localStorage.getItem('urlList')) : [];
-		tempUrlList.push(this.state.url);
-		localStorage.setItem('urlList', JSON.stringify(tempUrlList));
-		this.setState({ url: "" }, () => this.getUrlResponse())
+		if (!tempUrlList.includes(this.state.url)) {
+			tempUrlList.push(this.state.url);
+			localStorage.setItem('urlList', JSON.stringify(tempUrlList));
+			this.setState({ url: "" }, () => this.getUrlResponse())
+		}
+		else {
+			this.setState({ errorMessage: true })
+		}
 	}
 
 	render() {
 		return <div className="app-body">
 			<div className="content-header">
 				<input placeholder="Input with URL validation" onChange={this.onChangeHandler} value={this.state.url} />
+				{this.state.errorMessage && <p>This website already exists !</p>}
 				<button type="button" className="button-add-website" onClick={this.addWebsiteHandler} disabled={this.state.url.trim() == ""}>ADD WEBSITE</button>
 			</div>
 			{this.state.urlList.length ?

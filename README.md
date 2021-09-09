@@ -1,5 +1,5 @@
-## Cobold assignment
-This assignment is for Cobold. 
+## Cobold Digital assignment
+This assignment is for Cobold Digital. 
 
 ## Port
 
